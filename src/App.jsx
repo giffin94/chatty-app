@@ -19,8 +19,9 @@ class App extends Component {
   }
 
   newMessage(newMsg, userInfo) {
-    let previousState = this.state.messages;
-    let newState = { currentUser: userInfo, messages: [...previousState, newMsg] };
+    let previousState = this.state;
+    let newState = { currentUser: userInfo, messages: [...previousState.messages, newMsg] };
+    //notification if username changed
     this.setState(newState);   
   }
   //add new message function to pass to ChatBar

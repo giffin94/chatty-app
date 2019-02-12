@@ -9,7 +9,7 @@ function randomId() {
 function ChatBar(props) {
   function onSubmit(event) {
     event.preventDefault();
-    const userName = event.target.elements.username.value;
+    const userName = event.target.elements.username.value ? event.target.elements.username.value : 'Anonymous';
     const newMsg = event.target.elements.msg.value; 
     if (newMsg) {
       let thisUserObject = {
