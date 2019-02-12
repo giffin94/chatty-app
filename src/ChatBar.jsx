@@ -3,15 +3,21 @@ import React from 'react';
 function ChatBar() {
   function onSubmit(event) {
     event.preventDefault();
-    alert('message submitted');
+    const userName = event.target.elements.username.value ? event.target.elements.username.value :'Anonymous';
+    const newMsg = event.target.elements.msg.value; 
+    if (newMsg) {
+      alert(`${userName}, ${newMsg}`);
+    } else {
+      alert('You must enter a message!');
+    }
   }
   return (<footer className='ChatBar'>
     <form onSubmit={onSubmit}>
-      <input name='username' type='text'/>
-      <input name='msg' type='text'/>
-      <button type='submit'>Send</button>
+      <input className='username' name='username' type='text' placeholder='Name (Optional)'/>
+      <input className='msg' name='msg' type='text' placeholder='Type your message here and press ENTER.'/>
+      <input className='hiddenSubmit' type='submit' hidefocus='true'/>
     </form>
   </footer>);
 }
 
-module.exports = ChatBar;
+export default ChatBar;

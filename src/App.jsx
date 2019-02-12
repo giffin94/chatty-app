@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
-const ChatBar = require('./ChatBar.jsx');
+import ChatBar from './ChatBar.jsx';
+import Message from './Message.jsx';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    // this.state = { messages }
+  }
   render() {
-    return (<body>
-        <h1>Chat my app</h1>
+    return (
+      <div className='mainDiv'>
+      <header>
+      <h1>Chatty</h1>
+      </header>
+        <Message />
         <ChatBar />
-      </body>
+      </div>
     );
   }
 }
