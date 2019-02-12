@@ -22,6 +22,7 @@ function ChatBar(props) {
       }
       props.updateMsg(newMsgObject, thisUserObject);
       event.target.elements.msg.value = '';
+      event.target.elements.username.value = userName;
     } else {
       alert('You must enter a message!');
     }
