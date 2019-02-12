@@ -1,12 +1,13 @@
 import React from 'react';
 
-function ChatBar() {
+function ChatBar(/*props*/) {
   function onSubmit(event) {
     event.preventDefault();
     const userName = event.target.elements.username.value ? event.target.elements.username.value :'Anonymous';
     const newMsg = event.target.elements.msg.value; 
     if (newMsg) {
       alert(`${userName}, ${newMsg}`);
+      //make a new Message component with data (message.jsx)
     } else {
       alert('You must enter a message!');
     }

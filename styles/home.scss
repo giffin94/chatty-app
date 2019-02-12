@@ -20,25 +20,35 @@ header{
 .ChatBar {
   background-color: $themeBackgroundColor;
   position: absolute;
-  height: 32px;
+  height: 34px;
   width: 100vw;
   bottom: 0px;
   z-index: 1;
+  border: 1.25px solid;
   form {
-    color: black;
+    display: inline-flex;
+    justify-content: space-around;
+    color: $themeTextColor;
     .username {
-      margin: 5px;
+      float: left;
+      border: 1px solid;
+      margin: 7px;
     }
     .msg {
-      margin: 5px;
+      float: right;
+      margin: 7px;
+      border: 1px solid;
+      width: 66vw;
     }
   }
 }
 
-.message {
+.messageContainer {
+  position: relative;
+  top: 6em;
   .user{
-    font-weight: bold; 
-  } 
+    font-weight: bold;
+  }
   .msgText{
     margin-left: 20px;
   }
