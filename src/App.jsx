@@ -7,21 +7,27 @@ class App extends Component {
     super(props);
     this.state = { 
       currentUser: { name: 'Default'},
-      messages: [
-        { 
-          user: null, 
-          content: '', 
-          id: 'a1b2' 
-        }
-      ]
+      messages: []
     }
+    this.socket = new WebSocket('ws://localhost:3001');
     this.newMessage = this.newMessage.bind(this);
   }
-  newMessage(newMsg, userInfo) {
-    let previousState = this.state;
-    let newState = { currentUser: userInfo, messages: [...previousState.messages, newMsg] };
-    //notification if username changed
-    this.setState(newState);   
+  componentDidMount() {
+    let previousState = this.state.messages;
+    let newMessage = {};
+    let newState = previousState;
+    this.socket.onopen = () => {
+      console.log('connected to websocket!');
+    }
+    this.socket.onmessage = (message) => {
+      newMessage = JSON.parse(message.data);
+      newState = [...previousState, newMessage];
+      this.setState({messages: newState});
+    }
+  }
+
+  newMessage(newMsg) {
+    this.socket.send(JSON.stringify(newMsg));
   }
   //add new message function to pass to ChatBar
   render() {

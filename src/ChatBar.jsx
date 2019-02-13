@@ -1,12 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function randomId() {
-  var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-  var uniqueID = randLetter + Date.now(); //because element IDs need to start with a letter
-  return uniqueID;
-}
-
 function ChatBar(props) {
   function onSubmit(event) {
     event.preventDefault();
@@ -18,8 +12,7 @@ function ChatBar(props) {
       }
       let newMsgObject = {
         user: `${userName}`,
-        content: `${newMsg}`,
-        id: randomId(),
+        content: `${newMsg}`
       }
       props.updateMsg(newMsgObject, thisUserObject);
       event.target.elements.msg.value = '';
