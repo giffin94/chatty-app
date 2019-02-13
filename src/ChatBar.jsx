@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function randomId() {
   var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
@@ -27,13 +28,20 @@ function ChatBar(props) {
       alert('You must enter a message!');
     }
   }
-  return (<footer className='ChatBar'>
-    <form onSubmit={onSubmit}>
-      <input className='username' name='username' type='text' placeholder='Name (Optional)' defaultValue={props.currentUser.name || 'Anonymous'}/>
-      <input className='msg' name='msg' type='text' placeholder='Type your message here and press ENTER.'/>
-      <input className='hiddenSubmit' type='submit'/>
-    </form>
-  </footer>);
+  return (
+    <footer className='ChatBar'>
+      <form onSubmit={onSubmit}>
+        <input className='username' name='username' type='text' placeholder='Name (Optional)' defaultValue={props.currentUser.name || 'Anonymous'}/>
+        <input className='msg' name='msg' type='text' placeholder='Type your message here and press ENTER.'/>
+        <input className='hiddenSubmit' type='submit'/>
+      </form>
+    </footer>
+  );
+}
+
+ChatBar.propTypes = {
+  currentUser: PropTypes.object,
+  updateMsg: PropTypes.func
 }
 
 export default ChatBar;

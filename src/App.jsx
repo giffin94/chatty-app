@@ -17,7 +17,6 @@ class App extends Component {
     }
     this.newMessage = this.newMessage.bind(this);
   }
-
   newMessage(newMsg, userInfo) {
     let previousState = this.state;
     let newState = { currentUser: userInfo, messages: [...previousState.messages, newMsg] };
@@ -37,4 +36,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
