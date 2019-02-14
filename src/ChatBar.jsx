@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ChatBar(props) {
   function onSubmit(event) {
     event.preventDefault();
-    const userName = event.target.elements.username.value ? event.target.elements.username.value : 'Anonymous';
+    const userName = props.currentUser.name;
     const newMsg = event.target.elements.msg.value; 
     if (newMsg) {
       let newMsgObject = {
@@ -13,6 +13,7 @@ function ChatBar(props) {
       }
       props.updateMsg(newMsgObject);
       event.target.elements.msg.value = '';
+      event.target.elements.username.value = userName;
     } else {
       alert('You must enter a message!');
     }

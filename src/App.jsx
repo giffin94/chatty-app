@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      currentUser: { name: 'Default'},
+      currentUser: { name: 'Anonymous'},
       messages: []
     }
     this.socket = new WebSocket('ws://localhost:3001');
