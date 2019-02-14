@@ -7,24 +7,28 @@ function ChatBar(props) {
     const userName = event.target.elements.username.value ? event.target.elements.username.value : 'Anonymous';
     const newMsg = event.target.elements.msg.value; 
     if (newMsg) {
-      let thisUserObject = {
-        name: `${userName}`,
-      }
       let newMsgObject = {
         user: `${userName}`,
         content: `${newMsg}`
       }
-      props.updateMsg(newMsgObject, thisUserObject);
+      props.updateMsg(newMsgObject);
       event.target.elements.msg.value = '';
-      event.target.elements.username.value = userName;
     } else {
       alert('You must enter a message!');
+    }
+  }
+  function onNameUpdate(event) {
+    let updatedName;
+    if(event.keyCode === 13) {
+      event.preventDefault();
+      updatedName = event.target.value;
+      props.updateMsg({name: `${updatedName}`});
     }
   }
   return (
     <footer className='ChatBar'>
       <form onSubmit={onSubmit}>
-        <input className='username' name='username' type='text' placeholder='Name (Optional)' defaultValue={props.currentUser.name || 'Anonymous'}/>
+        <input onKeyDown={onNameUpdate} className='username' name='username' type='text' placeholder='Name (Optional)' defaultValue={props.currentUser.name || 'Anonymous'}/>
         <input className='msg' name='msg' type='text' placeholder='Type your message here and press ENTER.'/>
         <input className='hiddenSubmit' type='submit'/>
       </form>

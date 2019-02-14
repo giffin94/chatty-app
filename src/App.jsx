@@ -20,9 +20,13 @@ class App extends Component {
     }
     this.socket.onmessage = (message) => {
       newMessage = JSON.parse(message.data);
-      console.log('hi!');
-      newState.push(newMessage);
-      this.setState({messages: newState});
+      if(newMessage.hasOwnProperty('name')) {
+        console.log(newMessage.name);
+        this.setState({currentUser: {name: `${newMessage.name}`}});
+      } else {
+        newState.push(newMessage);
+        this.setState({messages: newState});
+      }
     }
   }
 
