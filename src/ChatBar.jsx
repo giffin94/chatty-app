@@ -8,6 +8,7 @@ function ChatBar(props) {
     const newMsg = event.target.elements.msg.value; 
     if (newMsg) {
       let newMsgObject = {
+        type: 'postMessage',
         user: `${userName}`,
         content: `${newMsg}`
       }
@@ -23,13 +24,13 @@ function ChatBar(props) {
     if(event.keyCode === 13) {
       event.preventDefault();
       updatedName = event.target.value;
-      props.updateMsg({name: `${updatedName}`});
+      props.updateMsg({type: 'postUserUpdate', name: `${updatedName}`});
     }
   }
   return (
     <footer className='ChatBar'>
       <form onSubmit={onSubmit}>
-        <input onKeyDown={onNameUpdate} className='username' name='username' type='text' placeholder='Name (Optional)' defaultValue={props.currentUser.name || 'Anonymous'}/>
+        <input onKeyDown={onNameUpdate} className='username' name='username' type='text' defaultValue={props.currentUser.name || 'Anonymous'}/>
         <input className='msg' name='msg' type='text' placeholder='Type your message here and press ENTER.'/>
         <input className='hiddenSubmit' type='submit'/>
       </form>

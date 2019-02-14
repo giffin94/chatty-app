@@ -7,26 +7,44 @@ class App extends Component {
     super(props);
     this.state = { 
       currentUser: { name: 'Anonymous'},
-      messages: []
+      messages: [],
     }
     this.socket = new WebSocket('ws://localhost:3001');
     this.newMessage = this.newMessage.bind(this);
   }
+  
   componentDidMount() {
     let newMessage = {};
-    let newState = [];
+
     this.socket.onopen = () => {
       console.log('connected to websocket!');
     }
     this.socket.onmessage = (message) => {
       newMessage = JSON.parse(message.data);
-      if(newMessage.hasOwnProperty('name')) {
-        console.log(newMessage.name);
-        this.setState({currentUser: {name: `${newMessage.name}`}});
-      } else {
-        newState.push(newMessage);
-        this.setState({messages: newState});
+      let previousUser = this.state.currentUser.name;
+      let previousMessages = this.state.messages;
+
+      const incomingData = {
+        incomingMessage: (data) => {
+          return({messages: [...previousMessages, data]});
+        },
+        incomingUserUpdate: (data, name) => {
+          let updateNotification;
+          if (data.name !== name) {
+            updateNotification = {
+              type: 'postNotification',
+              newName: data.name,
+              oldName: name
+            }
+            this.newMessage(updateNotification);
+          }
+          return({currentUser: {name: `${data.name}`}});
+        },
+        incomingNotification: (data) => {
+          return {messages: [...previousMessages, data]};
+        }
       }
+      this.setState(incomingData[`${newMessage.type}`](newMessage, previousUser));
     }
   }
 
