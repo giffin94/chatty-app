@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 function Notification(props) {
   const message = props.message;
   return (
-        <div className='notificationTxt'>{message.content}</div>
+    <div className='notificationTxt'>
+      {message.content}
+    </div>
   );
 }
 Notification.propTypes = {
