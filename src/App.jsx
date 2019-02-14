@@ -8,6 +8,7 @@ class App extends Component {
     this.state = { 
       currentUser: { name: 'Anonymous'},
       messages: [],
+      activeUsers: 0,
     }
     this.socket = new WebSocket('ws://localhost:3001');
     this.newMessage = this.newMessage.bind(this);
@@ -38,10 +39,14 @@ class App extends Component {
             }
             this.newMessage(updateNotification);
           }
-          return({currentUser: {name: `${data.name}`}});
+          return {currentUser: {name: `${data.name}`}};
         },
         incomingNotification: (data) => {
           return {messages: [...previousMessages, data]};
+        },
+        activeUserUpdate: (data) => {
+          console.log(data.count);
+          return {activeUsers: data.count}
         }
       }
       this.setState(incomingData[`${newMessage.type}`](newMessage, previousUser));
@@ -56,6 +61,7 @@ class App extends Component {
       <div className='mainDiv'>
       <header>
       <h1>Chatty</h1>
+      <span className='userCount'>{this.state.activeUsers} users currently active.</span>
       </header>
         <MessageList messages={this.state.messages}/>
         <ChatBar updateMsg={this.newMessage} currentUser={this.state.currentUser}/>
