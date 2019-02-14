@@ -13,15 +13,15 @@ class App extends Component {
     this.newMessage = this.newMessage.bind(this);
   }
   componentDidMount() {
-    let previousState = this.state.messages;
     let newMessage = {};
-    let newState = previousState;
+    let newState = [];
     this.socket.onopen = () => {
       console.log('connected to websocket!');
     }
     this.socket.onmessage = (message) => {
       newMessage = JSON.parse(message.data);
-      newState = [...previousState, newMessage];
+      console.log('hi!');
+      newState.push(newMessage);
       this.setState({messages: newState});
     }
   }
@@ -29,7 +29,6 @@ class App extends Component {
   newMessage(newMsg) {
     this.socket.send(JSON.stringify(newMsg));
   }
-  //add new message function to pass to ChatBar
   render() {
     return (
       <div className='mainDiv'>
