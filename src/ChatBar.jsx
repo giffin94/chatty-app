@@ -10,7 +10,8 @@ function ChatBar(props) {
       let newMsgObject = {
         type: 'postMessage',
         user: `${userName}`,
-        content: `${newMsg}`
+        content: `${newMsg}`,
+        styleOpts: `${props.currentUser.style.color}`
       }
       props.updateMsg(newMsgObject);
       event.target.elements.msg.value = '';

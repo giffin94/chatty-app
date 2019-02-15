@@ -4,9 +4,6 @@ import Message from './Message.jsx'
 import Notification from './Notification.jsx'
 
 class MessageList extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const messages = this.props.messages.map((message) => {
       if (message.type === 'postNotification') {
@@ -15,7 +12,7 @@ class MessageList extends Component {
         )
       } else {
         return (
-          <Message message={message} key={message.id} />
+          <Message message={message} user={message.user} userStyle={message.styleOpts} key={message.id} />
         )
       }   
     });
