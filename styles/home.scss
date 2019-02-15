@@ -46,11 +46,14 @@ header{
 .messageContainer {
   position: relative;
   top: 6em;
-  .user{
+  .user {
     font-weight: bold;
   }
-  .msgText{
+  .msgText {
     margin-left: 20px;
+  }
+  .notificationTxt {
+    font-style: italic;
   }
 }
 
