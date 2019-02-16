@@ -7,6 +7,14 @@ header{
   width: 100vw;
   h1 {
     color: $themeTextColor;
+    display: float;
+    float: left;
+  }
+  div {
+    position: relative;
+    top: 2em;
+    display: float;
+    float: right;
   }
 }
 .mainDiv {
@@ -48,12 +56,17 @@ header{
   top: 6em;
   .user {
     font-weight: bold;
+    float: left;
   }
   .msgText {
     margin-left: 20px;
   }
   .notificationTxt {
     font-style: italic;
+  }
+  .userimg {
+    max-width: 60vw;
+    max-height: 50vh;
   }
 }
 

@@ -99,7 +99,7 @@ class App extends Component {
       <div className='mainDiv'>
       <header>
       <h1>Chatty</h1>
-      <div className='userCount'>{this.state.activeUsers} users currently active.</div>
+      <div className='userCount'>Active users: {this.state.activeUsers}</div>
       </header>
         <MessageList messages={this.state.messages} />
         <ChatBar updateMsg={this.newMessage} currentUser={this.state.currentUser}/>
