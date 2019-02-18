@@ -1,7 +1,14 @@
-React Boilerplate
+Chatty-App
 =====================
 
-A minimal and light dev environment for ReactJS.
+A single page instant messenger.
+
+### Screenshots
+
+!["Have a chat!"](https://github.com/giffin94/chatty-app/blob/master/public/images/Screenshot%20from%202019-02-17%2016-21-27.png?raw=true)
+
+!["unique colors for each user!"](https://github.com/giffin94/chatty-app/blob/master/public/images/Screenshot%20from%202019-02-17%2016-16-33.png?raw=true)
+
 
 ### Usage
 
