@@ -96,14 +96,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className='mainDiv'>
+      <section className='mainBlock'>
       <header>
       <h1>Chatty</h1>
       <div className='userCount'>Active users: {this.state.activeUsers}</div>
       </header>
-        <MessageList messages={this.state.messages} />
+       {this.state.messages.length > 0 &&  <MessageList messages={this.state.messages} />}
         <ChatBar updateMsg={this.newMessage} currentUser={this.state.currentUser}/>
-      </div>
+      </section>
     );
   }
 }

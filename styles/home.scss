@@ -1,36 +1,51 @@
 $themeBackgroundColor: tomato;
 $themeTextColor: black;
+$messageMargin: 3px;
+
 header{
   position: fixed;
   top: 0px;
   background-color: $themeBackgroundColor;
   width: 100vw;
+  z-index: 1;
   h1 {
     color: $themeTextColor;
     display: float;
     float: left;
+    margin-left: 0.33em;
   }
   div {
     position: relative;
     top: 2em;
     display: float;
     float: right;
+    margin-right: 0.33em;
   }
 }
-.mainDiv {
-  position: fixed;
+
+body {
+  overflow-x: hidden;
+}
+.mainBlock {
+  position: absolute;
   top: 0px;
   left: 0px;
+  overflow-y: auto;
+  margin: 0px;
   min-height: 100vh;
   min-width: 100vw;
+  max-width: 100vh;
+  background-color: lightblue;
+  opacity: 1;
+  z-index: 0;
 }
 
 .ChatBar {
   background-color: $themeBackgroundColor;
-  position: absolute;
+  position: fixed;
   height: 34px;
   width: 100vw;
-  bottom: 0px;
+  bottom: 0;
   z-index: 1;
   border: 1.25px solid;
   form {
@@ -53,20 +68,55 @@ header{
 
 .messageContainer {
   position: relative;
+  display: block;
   top: 6em;
-  .user {
-    font-weight: bold;
-    float: left;
-  }
-  .msgText {
-    margin-left: 20px;
-  }
+  padding: 1em;
+  background-color: lightyellow;
+  margin-right: 1em;
+  margin-left: 1em;
+  margin-bottom: 5em;
+  border: 1px solid orange;
+  border-radius: 2px;
   .notificationTxt {
     font-style: italic;
+    color: grey;
+    opacity: 0.85;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    background-color: lightcyan;
+    padding: 2px;
+    margin: $messageMargin;
   }
-  .userimg {
-    max-width: 60vw;
-    max-height: 50vh;
+  .message{
+    margin: $messageMargin;
+    border: 1px solid slategray;
+    border-radius: 3px;
+    padding: 0.5em;
+    display: grid;
+    grid-template-columns: 100px 300px auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "user msg ..."
+      "img img ..";
+    .user {
+      font-weight: bold;
+      float: left;
+      margin-left: 0.66em;
+      grid-area: user; 
+    }
+    .msgText {
+      margin-left: 5px;
+      grid-area: msg;
+    }
+    .userimg {
+      max-width: 60vw;
+      max-height: 50vh;
+      border: 2px solid slategrey;
+      border-radius: 3px;
+      grid-area: img;
+      margin: 1em;
+      margin-left: 73px;
+    }
   }
 }
 
