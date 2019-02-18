@@ -17,6 +17,7 @@ header{
   div {
     position: relative;
     top: 2em;
+    right: 1em;
     display: float;
     float: right;
     margin-right: 0.33em;
@@ -97,7 +98,7 @@ body {
     grid-template-rows: auto;
     grid-template-areas:
       "user msg ..."
-      "img img ..";
+      "img img img";
     .user {
       font-weight: bold;
       float: left;
